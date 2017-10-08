@@ -1,12 +1,13 @@
 class User:
-    def __init__(self, db, username, password=None):
+    def __init__(self, db, username, password, register=False):
         self._db = db
         self.username = username
-        if password:
-            self._register()
-        self._authenticate()
+        if register:
+            self._register(password)
+        else:
+            self._authenticate(password)
 
-    def _register(self):
+    def _register(self, password):
         raise NotImplementedError("Registration is not implemented")
 
     def _authenticate(self):
