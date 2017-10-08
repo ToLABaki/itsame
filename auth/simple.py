@@ -5,5 +5,10 @@ class Dummy(core.User):
         return self.__setitem__("password", password)
 
     def _authenticate(self, password):
+        if password is None:
+            raise core.FailedToAuthenticate("Password for user %s can't be empty" \
+                    % self.username)
+
         if self.__getitem__("password").decode() != password or password is None:
-            raise core.FailedToAuthenticate(self.__getitem__("password") + " vs " + password)
+            raise core.FailedToAuthenticate("Failed to authenticate user %s" % \
+                    self.username)
