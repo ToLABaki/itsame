@@ -1,6 +1,6 @@
 import core
 
-class Simple(core.User):
+class User(core.User):
     def _register(self, password):
         return self.__setitem__("password", password)
 
